@@ -1,4 +1,4 @@
-profile.jsp<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.entities.User" %>
 <!DOCTYPE html>
@@ -115,7 +115,7 @@ profile.jsp<%@ page contentType="text/html;charset=UTF-8" language="java" %>
         <h2 class="mt-5">Add User</h2>
         <form action="user" method="post">
             <!-- Simulate PUT -->
-            <input type="hidden" name="_method" value="PUT" id="methodValue">
+            <input type="hidden" name="_method" value="POST" id="methodValue">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" name="username" required>

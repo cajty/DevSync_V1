@@ -41,7 +41,7 @@ public class UserProfileServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "User not found");
             return;
         }
-
+        System.out.println("User found: " + user.getUsername());
         request.setAttribute("user", user);
         request.getRequestDispatcher(PROFILE_JSP).forward(request, response);
     }

@@ -73,11 +73,22 @@ public class UserDAO {
         }
     }
 
-    // Update an existing user
+
     public void updateUser(User user) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(user);
+
+            // Fetch the existing user from the database by ID
+            User existingUser = entityManager.find(User.class, user.getId());
+
+            if (existingUser != null) {
+                // Merge the changes into the existing user entity
+                entityManager.merge(user);
+            } else {
+                // Handle the case where the user doesn't exist (optional)
+                System.out.println("User with ID " + user.getId() + " not found!");
+            }
+
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             if (entityManager.getTransaction().isActive()) {
@@ -86,6 +97,7 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+
 
     // Delete a user by ID
     public void deleteUser(int userId) {

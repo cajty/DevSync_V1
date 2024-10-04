@@ -20,9 +20,15 @@ public class UserServlet extends HttpServlet {
         userService = new UserService();
     }
 
+    private void returnThatDashboard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("users", userService.getAllUsers());
+        request.getRequestDispatcher("/home.jsp").forward(request, response);
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         returnThatDashboard(request, response);
+
     }
 
     @Override
@@ -31,9 +37,17 @@ public class UserServlet extends HttpServlet {
 
         boolean status = false;
 
+        if ("POST".equalsIgnoreCase(method)) {
+            User User = requestToUser(request);
+            status = handleAdd(User);
+        }
+
         if ("PUT".equalsIgnoreCase(method)) {
-            User newUser = requestToUser(request);
-            status = handleAdd(newUser);
+
+
+            User User = requestToUser(request);
+            request.getParameter("id");
+            status = handleUpdate(User);
         }
 
 
@@ -48,9 +62,18 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private boolean handleAdd(User newUser){
+    private boolean handleUpdate(User User){
         try {
-            userService.addUser(newUser);
+            userService.updateUser(User);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean handleAdd(User User){
+        try {
+            userService.addUser(User);
             return true;
         } catch (Exception e) {
             return false;
@@ -64,13 +87,6 @@ public class UserServlet extends HttpServlet {
         } catch (Exception e) {
             return false;
         }
-    }
-
-
-
-private void returnThatDashboard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("users", userService.getAllUsers());
-        request.getRequestDispatcher("/home.jsp").forward(request, response);
     }
 
 
