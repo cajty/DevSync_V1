@@ -86,7 +86,7 @@ public class UserDAO {
                 entityManager.merge(user);
             } else {
                 // Handle the case where the user doesn't exist (optional)
-                System.out.println("User with ID " + user.getId() + " not found!");
+                System.out.println("User with ID \n\n\n\n\n" + user.getId() + " not found!");
             }
 
             entityManager.getTransaction().commit();

@@ -3,7 +3,6 @@
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
       <artifact name="DevSync:war" />
-      <artifact name="DevSync:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -11,12 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ac4ef59-2ba5-42c8-a036-57292801fcd8" name="Changes" comment="CRUD OF uSER">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/servlet/UserProfileServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/servlet/UserProfileServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/servlet/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/servlet/UserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/profile.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,22 +27,25 @@
       </list>
     </option>
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "cajty"
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;cajty&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/cajty/DevSync_V1.git",
-    "accountId": "ba030012-f1e2-43e3-a0fd-cbccd9363b85"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/cajty/DevSync_V1.git&quot;,
+    &quot;accountId&quot;: &quot;ba030012-f1e2-43e3-a0fd-cbccd9363b85&quot;
   }
-}]]></component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -53,6 +53,10 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2n0ud1kxA1vT4ny3DMF9EW0OCHF" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -62,6 +66,7 @@
   "keyToString": {
     "JBoss/WildFly Server.JBoss/WildFly 34.0.0.Beta1.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.DevSync [clean,install].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
@@ -90,6 +95,11 @@
       <recent name="C:\Users\YouCode\IdeaProjects\DevSync\src\main\resources" />
       <recent name="C:\Users\YouCode\IdeaProjects\DevSync\src\main\java" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean install" />
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="JBoss/WildFly 34.0.0.Beta1" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 34.0.0.Beta1" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
@@ -163,7 +173,6 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="DevSync:war" />
-          <artifact name="DevSync:war exploded" />
         </option>
       </method>
     </configuration>
@@ -185,6 +194,10 @@
       <option name="presentableId" value="Default" />
       <updated>1728035456315</updated>
       <workItem from="1728035457080" duration="14011000" />
+      <workItem from="1728122398800" duration="719000" />
+      <workItem from="1728125339164" duration="781000" />
+      <workItem from="1728126303852" duration="1120000" />
+      <workItem from="1728288530810" duration="2917000" />
     </task>
     <task id="LOCAL-00001" summary="CRUD OF uSER">
       <option name="closed" value="true" />

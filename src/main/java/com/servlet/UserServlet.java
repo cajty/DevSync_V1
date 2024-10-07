@@ -46,7 +46,8 @@ public class UserServlet extends HttpServlet {
 
 
             User User = requestToUser(request);
-            request.getParameter("id");
+
+            User.setId( Long.parseLong(request.getParameter("id")));
             status = handleUpdate(User);
         }
 
