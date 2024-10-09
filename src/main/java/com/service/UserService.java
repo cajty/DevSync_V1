@@ -41,4 +41,25 @@ public class UserService {
     public void deleteUser(int userId) {
         userDAO.deleteUser(userId);
     }
+
+
+//    int getRemainingReplaceTokens(Long userId){
+//        return userDAO.getRemainingReplaceTokens(userId);
+//    };
+//    int getRemainingDeleteTokens(Long userId){
+//        return userDAO.getRemainingDeleteTokens(userId);
+//    };
+//    boolean useReplaceToken(Long userId){
+//        return userDAO.useReplaceToken(userId);
+//    };
+//    boolean useDeleteToken(Long userId){
+//        return userDAO.useDeleteToken(userId);
+//    };
+//    void resetDailyReplaceTokens(){
+//        userDAO.resetDailyReplaceTokens();
+//    };
+//    void resetMonthlyDeleteTokens(){
+//        userDAO.resetMonthlyDeleteTokens();
+//    };
+
 }

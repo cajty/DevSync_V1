@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 @WebServlet(name = "UserProfileServlet", value = "/user-profile")
 public class UserProfileServlet extends HttpServlet {
     private static final Logger logger = Logger.getLogger(UserProfileServlet.class.getName());
-    private static final String PROFILE_JSP = "/profile.jsp";
+    private static final String PROFILE_JSP = "/view/profile.jsp";
     private static final int FORBIDDEN_ERROR = HttpServletResponse.SC_FORBIDDEN;
     private UserService userService;
 

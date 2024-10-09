@@ -27,6 +27,11 @@ public class User {
     @Column(name = "email" , nullable = false, unique = true)
     private String email;
 
+
+
+    @Column(name="chips", nullable = false, columnDefinition = "int default 0")
+    private Integer chips;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "role" , nullable = false)
     private UserRole role;
@@ -104,6 +109,13 @@ public class User {
     public void setRole(UserRole role) {
         this.role = role;
     }
+    public Integer getChips() {
+        return chips;
+    }
+
+    public void setChips(Integer chips) {
+        this.chips = chips;
+    }
 
     public User getManager() {
         return manager;
@@ -112,6 +124,7 @@ public class User {
     public void setManager(User manager) {
         this.manager = manager;
     }
+
 
 
 
