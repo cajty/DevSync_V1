@@ -1,26 +1,29 @@
 package com.service;
 
-import com.dao.UserDAO;
+import com.repository.TicketRepository;
+import com.repository.UserRepository;
+import com.entities.Ticket;
 import com.entities.User;
 
 import java.util.List;
 
 public class UserService {
-    private UserDAO userDAO;
+    private UserRepository userRepository;
+    private TicketRepository ticketDAO;
 
     public UserService() {
-        this.userDAO = new UserDAO();
+        this.userRepository = new UserRepository();
     }
 
 
     public User getUserById(int userId) {
-        User user = userDAO.getUserById(userId);
+        User user = userRepository.getUserById(userId);
         return user;
     }
 
     // Retrieve all users
     public List<User> getAllUsers() {
-        List<User> users = userDAO.getAllUsers();
+        List<User> users = userRepository.getAllUsers();
 
 
         return users;
@@ -29,37 +32,90 @@ public class UserService {
     // Add a new user
     public void addUser(User user) {
         System.out.println("Adding user: " + user.getUsername());
-        userDAO.addUser(user);
+        userRepository.addUser(user);
     }
 
     // Update an existing user
     public void updateUser(User user) {
-        userDAO.updateUser(user);
+        userRepository.updateUser(user);
     }
 
     // Delete a user by ID
     public void deleteUser(int userId) {
-        userDAO.deleteUser(userId);
+        userRepository.deleteUser(userId);
     }
 
 
-//    int getRemainingReplaceTokens(Long userId){
-//        return userDAO.getRemainingReplaceTokens(userId);
-//    };
-//    int getRemainingDeleteTokens(Long userId){
-//        return userDAO.getRemainingDeleteTokens(userId);
-//    };
-//    boolean useReplaceToken(Long userId){
-//        return userDAO.useReplaceToken(userId);
-//    };
-//    boolean useDeleteToken(Long userId){
-//        return userDAO.useDeleteToken(userId);
-//    };
-//    void resetDailyReplaceTokens(){
-//        userDAO.resetDailyReplaceTokens();
-//    };
-//    void resetMonthlyDeleteTokens(){
-//        userDAO.resetMonthlyDeleteTokens();
-//    };
+
+
+    public Ticket canReplace(Long userId, Long ticketId){
+        int userReplaceTokens = userRepository.getUserReplaceTokens(userId);
+        Ticket ticket = ticketDAO.getTicketById(ticketId);
+       if(  userReplaceTokens > 0 && ticket.getCanReplaceTicket()){
+           return ticket;
+       }
+         return null;
+
+    };
+    boolean CanDelete(Long userId){
+        int userDeleteTokens = userRepository.getUserDeleteTokens(userId);
+        return userDeleteTokens > 0;
+    };
+
+
+
+    boolean replaceTicketWithToken(Long userId, Long ticketId){
+        if(canReplace(userId,ticketId) != null){
+//
+            return true;
+
+        }
+            return false;
+    };
+
+
+    boolean deleteTicketWithToken(Long userId, Long ticketId){
+        if(CanDelete(userId)){
+            if( userRepository.useDeleteToken(userId)){
+
+                return true;
+
+            }
+        }
+            return false;
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    void resetDailyReplaceTokens(){
+        userRepository.resetDailyReplaceTokens();
+    };
+    void resetMonthlyDeleteTokens(){
+        userRepository.resetMonthlyDeleteTokens();
+    };
 
 }

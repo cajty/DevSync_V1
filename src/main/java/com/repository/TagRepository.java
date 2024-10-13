@@ -1,52 +1,53 @@
-package com.dao;
+package com.repository;
 
-import com.config.DbConnection;
 import com.entities.Tag;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 import java.util.List;
 
-public class TagDAO {
-    private EntityManager entityManager;
+public class TagRepository {
+    private final EntityManagerFactory entityManagerFactory;
 
-    public TagDAO() {
-        this.entityManager = DbConnection.getInstance().getEntityManager();
+    public TagRepository() {
+        this.entityManagerFactory = Persistence.createEntityManagerFactory("DevSync");
     }
 
     public List<Tag> getAll() {
+        EntityManager entityManager = null;
         try {
-            // Enable logging of when the method is called
+            entityManager = entityManagerFactory.createEntityManager();
             System.out.println("Attempting to retrieve all tags...");
-
-            // Wrap with transaction if needed
             List<Tag> tags = entityManager.createQuery("SELECT t FROM Tag t", Tag.class).getResultList();
-
-            // Log the number of tags found
             System.out.println("Number of tags retrieved: " + tags.size());
-
             return tags;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
         }
     }
+
     public Tag getTag(Integer tagId) {
+        EntityManager entityManager = null;
         try {
-            // Enable logging of when the method is called
+            entityManager = entityManagerFactory.createEntityManager();
             System.out.println("Attempting to retrieve tag by ID...");
-
-            // Wrap with transaction if needed
             Tag tag = entityManager.find(Tag.class, tagId);
-
-            // Log the tag found
             System.out.println("Tag retrieved: " + tag);
-
             return tag;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
         }
     }
-
 
 }

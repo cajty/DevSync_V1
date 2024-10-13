@@ -117,7 +117,7 @@ public class Ticket {
         this.user = user;
     }
 
-    public boolean isCanReplaceTicket() {
+    public boolean getCanReplaceTicket() {
         return canReplaceTicket;
     }
 

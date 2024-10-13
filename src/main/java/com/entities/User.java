@@ -28,9 +28,20 @@ public class User {
     private String email;
 
 
+    public Integer getDailyReplaceTokens() {
+        return dailyReplaceTokens;
+    }
 
-    @Column(name="chips", nullable = false, columnDefinition = "int default 0")
-    private Integer chips;
+    public void setDailyReplaceTokens(Integer dailyReplaceTokens) {
+        this.dailyReplaceTokens = dailyReplaceTokens;
+    }
+
+    @Column(name = "daily_replace_tokens", nullable = false)
+    private Integer dailyReplaceTokens;
+
+    @Column(name = "monthly_delete_tokens", nullable = false)
+    private Integer monthlyReplaceTokens;
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role" , nullable = false)
@@ -109,13 +120,7 @@ public class User {
     public void setRole(UserRole role) {
         this.role = role;
     }
-    public Integer getChips() {
-        return chips;
-    }
 
-    public void setChips(Integer chips) {
-        this.chips = chips;
-    }
 
     public User getManager() {
         return manager;
@@ -128,4 +133,11 @@ public class User {
 
 
 
+    public Integer getMonthlyReplaceTokens() {
+        return monthlyReplaceTokens;
+    }
+
+    public void setMonthlyReplaceTokens(Integer monthlyReplaceTokens) {
+        this.monthlyReplaceTokens = monthlyReplaceTokens;
+    }
 }

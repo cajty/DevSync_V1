@@ -9,32 +9,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ac4ef59-2ba5-42c8-a036-57292801fcd8" name="Changes" comment="UPDATA">
-      <change afterPath="$PROJECT_DIR$/.idea/diff-generator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpb-settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dao/TagDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dao/TicketDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/entities/Tag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/entities/Ticket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/entities/TicketStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/entities/add_chipCul_to_user.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/service/TagService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/service/TicketService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/servlet/TicketServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/validation/TaskValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/show_ticket.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/ticket.jsp" afterDir="false" />
+    <list default="true" id="8ac4ef59-2ba5-42c8-a036-57292801fcd8" name="Changes" comment="ADD ticket creation  and delete">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/service/SchedulerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/servlet/TicketServletAjax.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/component/add_ticket.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/component/add_tiket_ajax.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/component/header.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/testAjax.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/config/DbConnection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dao/TagDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/repository/TagRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dao/TicketDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/repository/TicketRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/Ticket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/update-schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/update-schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/TagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/TagService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/TicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/TicketService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/servlet/UserProfileServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/servlet/UserProfileServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/servlet/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/servlet/UserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/servlet/TestDbConnectionServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/servlet/TicketServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/servlet/TicketServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/show_ticket.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/show_ticket.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,8 +45,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -96,6 +96,9 @@
     &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
     &quot;Maven.DevSync [clean,install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.DevSync [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.DevSync [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.DevSync [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.DevSync [site].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;version-1.1.0&quot;,
@@ -139,9 +142,6 @@
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="DevSync:war exploded">
-          <settings />
-        </artifact>
-        <artifact name="DevSync:war">
           <settings />
         </artifact>
       </deployment>
@@ -204,9 +204,7 @@
       </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="DevSync:war" />
-        </option>
+        <option name="BuildArtifacts" enabled="false" />
       </method>
     </configuration>
   </component>
@@ -240,7 +238,15 @@
       <workItem from="1728380867411" duration="5244000" />
       <workItem from="1728386167910" duration="10063000" />
       <workItem from="1728412697526" duration="9874000" />
-      <workItem from="1728461570739" duration="20097000" />
+      <workItem from="1728461570739" duration="20238000" />
+      <workItem from="1728548685891" duration="3332000" />
+      <workItem from="1728552058337" duration="9960000" />
+      <workItem from="1728585347083" duration="1755000" />
+      <workItem from="1728634272266" duration="26000" />
+      <workItem from="1728636182759" duration="4909000" />
+      <workItem from="1728655672286" duration="8009000" />
+      <workItem from="1728822603926" duration="8396000" />
+      <workItem from="1728831230768" duration="530000" />
     </task>
     <task id="LOCAL-00001" summary="CRUD OF uSER">
       <option name="closed" value="true" />
@@ -258,7 +264,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728291663252</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="ADD ticket creation  and delete">
+      <option name="closed" value="true" />
+      <created>1728512057995</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728512057995</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,6 +281,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CRUD OF uSER" />
     <MESSAGE value="UPDATA" />
-    <option name="LAST_COMMIT_MESSAGE" value="UPDATA" />
+    <MESSAGE value="ADD ticket creation  and delete" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADD ticket creation  and delete" />
   </component>
 </project>

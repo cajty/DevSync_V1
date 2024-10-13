@@ -1,5 +1,6 @@
 package com.servlet;
 
+import com.entities.Tag;
 import com.entities.Ticket;
 import com.entities.TicketStatus;
 import com.service.TagService;
@@ -10,15 +11,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
-@WebServlet(name = "IN_PROGRESS", value = "/IN_PROGRESS/*")
-public class TicketServlet extends HttpServlet {
+@WebServlet(name = "ticket", value = "/ticket/*")
+public class TicketServletAjax extends HttpServlet {
 
     private TicketService ticketservice;
     private TagService tagService;
@@ -29,47 +29,92 @@ public class TicketServlet extends HttpServlet {
         tagService = new TagService();
     }
 
+
     private void returnTicketHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            Set<Tag> tags = new HashSet<>(tagService.getAll());
+
             List<Ticket> tickets = ticketservice.getAllTickets();
 
+            System.out.println("\n\n\n\n" + tickets.size() + "\n\n\n\n");
+            List<Ticket> resolvedTickets = tickets.stream()
+                    .filter(ticket -> ticket.getStatus().equals(TicketStatus.RESOLVED))
+                    .collect(Collectors.toList());
 
-         List<Ticket> resolvedTickets = tickets.stream()
-        .filter(ticket -> ticket.getStatus().equals(TicketStatus.RESOLVED))
-        .collect(Collectors.toList());
+            List<Ticket> inProgressTickets = tickets.stream()
+                    .filter(ticket -> ticket.getStatus().equals(TicketStatus.IN_PROGRESS))
+                    .collect(Collectors.toList());
+            System.out.println("\n\n\n\n" + inProgressTickets + "\n\n\n\n");
+                System.out.println("\n\n\n\n" + tickets.size() + "\n\n\n\n");
+            List<Ticket> replacedTickets = tickets.stream()
+                    .filter(ticket -> ticket.getStatus().equals(TicketStatus.REPLACED))
+                    .collect(Collectors.toList());
 
-        List<Ticket> inProgressTickets = tickets.stream()
-            .filter(ticket -> ticket.getStatus().equals(TicketStatus.IN_PROGRESS))
-            .collect(Collectors.toList());
-        List<Ticket> replacedTickets = tickets.stream()
-            .filter(ticket -> ticket.getStatus().equals(TicketStatus.REPLACED))
-            .collect(Collectors.toList());
+            List<Ticket> closedTickets = tickets.stream()
+                    .filter(ticket -> ticket.getStatus().equals(TicketStatus.CLOSED))
+                    .collect(Collectors.toList());
 
-        List<Ticket> closedTickets = tickets.stream()
-            .filter(ticket -> ticket.getStatus().equals(TicketStatus.CLOSED))
-            .collect(Collectors.toList());
+            // Build JSON response manually
+            StringBuilder jsonBuilder = new StringBuilder();
+            jsonBuilder.append("{");
+            jsonBuilder.append("\"resolvedTickets\":").append(listToJson(resolvedTickets)).append(",");
+            jsonBuilder.append("\"inProgressTickets\":").append(listToJson(inProgressTickets)).append(",");
+            jsonBuilder.append("\"replacedTickets\":").append(listToJson(replacedTickets)).append(",");
+            jsonBuilder.append("\"closedTickets\":").append(listToJson(closedTickets)).append(",");
+            jsonBuilder.append("\"tags\":").append(tagsToJson(tags));
+            jsonBuilder.append("}");
 
-            // Set these lists as request attributes
-            request.setAttribute("resolvedTickets", resolvedTickets);
-            request.setAttribute("inProgressTickets", inProgressTickets);
-            request.setAttribute("replacedTickets", replacedTickets);
-            request.setAttribute("closedTickets", closedTickets);
-
-            request.setAttribute("tags", tagService.getAll());
-
-            // Forward to JSP
-            request.getRequestDispatcher("/view/show_ticket.jsp").forward(request, response);
+            // Set the response content type and write the JSON data
+            response.setContentType("application/json");
+            response.getWriter().write(jsonBuilder.toString());
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to retrieve tickets");
         }
     }
 
+    private String listToJson(List<Ticket> tickets) {
+        StringBuilder jsonBuilder = new StringBuilder();
+        jsonBuilder.append("[");
+        for (int i = 0; i < tickets.size(); i++) {
+            Ticket ticket = tickets.get(i);
+            jsonBuilder.append("{")
+                    .append("\"id\":").append(ticket.getId()).append(",")
+                    .append("\"title\":\"").append(ticket.getTitle()).append("\",")
+                    .append("\"description\":\"").append(ticket.getDescription()).append("\",")
+                    .append("\"deadline\":\"").append(ticket.getDeadline()).append("\",")
+                    .append("\"status\":\"").append(ticket.getStatus()).append("\",")
+                    .append("\"user\":\"").append(ticket.getUser()).append("\",")
+                    .append("\"tags\":").append(tagsToJson(ticket.getTags()))
+                    .append("}");
+            if (i < tickets.size() - 1) {
+                jsonBuilder.append(",");
+            }
+        }
+        jsonBuilder.append("]");
+        return jsonBuilder.toString();
+    }
+private String tagsToJson(Set<Tag> tags) {
+    StringBuilder jsonBuilder = new StringBuilder();
+    jsonBuilder.append("[");
+    int i = 0;
+    for (Tag tag : tags) {
+        jsonBuilder.append("{")
+                .append("\"id\":").append(tag.getId()).append(",")
+                .append("\"name\":\"").append(tag.getName()).append("\"")
+                .append("}");
+        if (i < tags.size() - 1) {
+            jsonBuilder.append(",");
+        }
+        i++;
+    }
+    jsonBuilder.append("]");
+    return jsonBuilder.toString();
+}
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        returnTicketHome(request, response);
-        // Forward to JSP
-        request.getRequestDispatcher("/view/testAjax.jsp").forward(request, response);
+        returnTicketHome(request, response);
     }
 
     @Override
@@ -83,6 +128,7 @@ public class TicketServlet extends HttpServlet {
         Ticket ticket = null ;
         List<Integer> tags = null;
         if(pathInfo.equals("/add") || pathInfo.equals("/update")){
+
             ticket = requestToTicket(request);
             String[] tagIds = request.getParameterValues("tags");
             tags= tagIds != null ?
@@ -90,13 +136,10 @@ public class TicketServlet extends HttpServlet {
                     : new ArrayList<>();
         }
 
-
-
         if (pathInfo == null) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid path");
             return;
         }
-
 
         switch (pathInfo) {
             case "/add":
@@ -108,6 +151,8 @@ public class TicketServlet extends HttpServlet {
                 break;
             case "/delete":
                 String idParam = request.getParameter("id");
+                System.out.println("\n\n\n\n\n\nID param: " + idParam + "\n\n\n\n\n\n");
+
                 if (idParam != null) {
                     Long ticketId = Long.parseLong(idParam);
                     status = handleDelete(ticketId);
@@ -117,7 +162,7 @@ public class TicketServlet extends HttpServlet {
                 }
                 break;
             default:
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid patFFh");
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid path");
                 return;
         }
 

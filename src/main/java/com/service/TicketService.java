@@ -1,6 +1,6 @@
 package com.service;
 
-import com.dao.TicketDAO;
+import com.repository.TicketRepository;
 import com.entities.Tag;
 import com.entities.Ticket;
 
@@ -10,20 +10,20 @@ import java.util.Set;
 
 public class TicketService {
 
-    private TicketDAO ticketDAO;
+    private TicketRepository ticketRepository;
     private TagService tagService;
 
 
 
     public TicketService() {
-        this.ticketDAO = new TicketDAO();
+        this.ticketRepository = new TicketRepository();
         this.tagService = new TagService();
     }
 
     public List<Ticket> getAllTickets() {
 
 
-        return ticketDAO.getAllTickets();
+        return ticketRepository.getAllTickets();
     }
     public void addTicket(Ticket ticket,List<Integer> tagIds) {
         for(Integer tagId:tagIds){
@@ -33,15 +33,19 @@ public class TicketService {
             }
 
         }
-        ticketDAO.addTicket(ticket);
+        ticketRepository.addTicket(ticket);
     }
 
     public void updateTicket(Ticket ticket) {
-        ticketDAO.updateTicket(ticket);
+        ticketRepository.updateTicket(ticket);
     }
 
     public void deleteTicket(Long ticketId) {
-        ticketDAO.deleteTicket(ticketId);
+        ticketRepository.deleteTicket(ticketId);
+    }
+    
+    public void closeOverdueTickets() {
+        ticketRepository.closeOverdueTickets();
     }
 
 

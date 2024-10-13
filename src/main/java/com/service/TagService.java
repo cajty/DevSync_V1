@@ -1,21 +1,21 @@
 package com.service;
 
-import com.dao.TagDAO;
+import com.repository.TagRepository;
 import com.entities.Tag;
 
 import java.util.List;
 
 public class TagService {
-    private TagDAO tagDAO;
+    private TagRepository tagRepository;
 
     public TagService() {
-        this.tagDAO = new TagDAO();
+        this.tagRepository = new TagRepository();
     }
     public List<Tag> getAll() {
-        return tagDAO.getAll();
+        return tagRepository.getAll();
     }
     public Tag getTag(Integer tagId) {
-        return tagDAO.getTag(tagId);
+        return tagRepository.getTag(tagId);
     }
 
 }

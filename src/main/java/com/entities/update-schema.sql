@@ -27,7 +27,7 @@ CREATE TABLE tickets
     description                     VARCHAR(255)                            NOT NULL,
     deadline                        date                                    NOT NULL,
     replacement_ticket_request_date date                                    NOT NULL,
-    status                          SMALLINT                                NOT NULL,
+    RESOLVED                          SMALLINT                                NOT NULL,
     CONSTRAINT pk_tickets PRIMARY KEY (id)
 );
 
