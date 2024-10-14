@@ -195,29 +195,10 @@ public class UserRepository {
         }
     }
 
-    public boolean useDeleteToken(Long userId) {
-        EntityManager entityManager = null;
-        try {
-            entityManager = entityManagerFactory.createEntityManager();
-            entityManager.getTransaction().begin();
-            User user = entityManager.find(User.class, userId);
-            if (user != null) {
-                user.setMonthlyReplaceTokens(user.getMonthlyReplaceTokens() - 1);
-                entityManager.merge(user);
-            }
-            entityManager.getTransaction().commit();
-            return true;
-        } catch (Exception e) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            e.printStackTrace();
-            return false;
-        } finally {
-            if (entityManager != null) {
-                entityManager.close();
-            }
-        }
-    }
+
+
+
+
+
 
 }

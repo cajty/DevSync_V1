@@ -25,9 +25,9 @@ public class SchedulerService {
         userService.resetMonthlyDeleteTokens();
     }
 
-    @Schedule(second = "0", minute = "0", hour = "0", persistent = false)
-    public void scheduleCloseOverdueTickets() {
-        ticketService.closeOverdueTickets();
-    }
+//   @Schedule(second = "*/5", minute = "*", hour = "*", persistent = false)
+//    public void scheduleCloseOverdueTickets() {
+//        ticketService.closeOverdueTickets();
+//    }
 
 }

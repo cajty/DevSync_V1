@@ -3,8 +3,10 @@ package com.servlet;
 import com.entities.Tag;
 import com.entities.Ticket;
 import com.entities.TicketStatus;
+import com.entities.User;
 import com.service.TagService;
 import com.service.TicketService;
+import com.service.UserService;
 import com.validation.TaskValidator;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,16 +19,18 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@WebServlet(name = "ticket", value = "/ticket/*")
+@WebServlet(name = "ticket", value = "/ticketJsoin/*")
 public class TicketServletAjax extends HttpServlet {
 
     private TicketService ticketservice;
     private TagService tagService;
+    private UserService userService;
 
     @Override
     public void init() {
         ticketservice = new TicketService();
         tagService = new TagService();
+        userService = new UserService();
     }
 
 
@@ -84,6 +88,9 @@ public class TicketServletAjax extends HttpServlet {
                     .append("\"description\":\"").append(ticket.getDescription()).append("\",")
                     .append("\"deadline\":\"").append(ticket.getDeadline()).append("\",")
                     .append("\"status\":\"").append(ticket.getStatus()).append("\",")
+                    .append("\"status\":\"").append(ticket.getStatus()).append("\",")
+                    .append("\"canReplaceTicket\":\"").append(ticket.getCanReplaceTicket()).append("\",")
+                    .append("\"canDeleteTicket\":\"").append(ticket.getCanDeleteTicket()).append("\",")
                     .append("\"user\":\"").append(ticket.getUser()).append("\",")
                     .append("\"tags\":").append(tagsToJson(ticket.getTags()))
                     .append("}");
@@ -124,16 +131,33 @@ private String tagsToJson(Set<Tag> tags) {
         System.out.println("\n\n\n\n\nPath info: " + pathInfo);
 
         boolean status = false;
-
         Ticket ticket = null ;
         List<Integer> tags = null;
-        if(pathInfo.equals("/add") || pathInfo.equals("/update")){
+        Long ticketId = null;
+        Long userId = null;
+
+        if(pathInfo.equals("/add")){
 
             ticket = requestToTicket(request);
             String[] tagIds = request.getParameterValues("tags");
             tags= tagIds != null ?
                     Arrays.stream(tagIds).map(Integer::parseInt).collect(Collectors.toList())
                     : new ArrayList<>();
+        }
+        if(pathInfo.equals("/delete_token") || pathInfo.equals("/replace_token")){
+
+            String userIdParam = request.getParameter("id_user");
+            String ticketIdParam = request.getParameter("id_ticket");
+            System.out.println("\n\n\n\n"+"aaaaaaa" + ticketId + "\n\n\n\n");
+            if (userIdParam != null && ticketIdParam != null) {
+                 userId = Long.parseLong(userIdParam);
+                 ticketId = Long.parseLong(ticketIdParam);
+            } else {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing user or ticket ID");
+                return;
+            }
+
+
         }
 
         if (pathInfo == null) {
@@ -145,21 +169,13 @@ private String tagsToJson(Set<Tag> tags) {
             case "/add":
                 status = handleAdd(ticket, tags);
                 break;
-            case "/update":
-                ticket.setId(Long.parseLong(request.getParameter("id")));
-                status = handleUpdate(ticket);
+            case "/delete_token":
+                System.out.println("\n\n\n\n"+"ffffff" + ticketId + "\n\n\n\n");
+                System.out.println("\n\n\n\n" + userId + "\n\n\n\n");
+                status = handleDeletToken(userId, ticketId);
                 break;
-            case "/delete":
-                String idParam = request.getParameter("id");
-                System.out.println("\n\n\n\n\n\nID param: " + idParam + "\n\n\n\n\n\n");
-
-                if (idParam != null) {
-                    Long ticketId = Long.parseLong(idParam);
-                    status = handleDelete(ticketId);
-                } else {
-                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing ticket ID");
-                    return;
-                }
+            case "/replace_token":
+                status = handleReplaceToken(userId, ticketId);
                 break;
             default:
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid path");
@@ -183,19 +199,20 @@ private String tagsToJson(Set<Tag> tags) {
         }
     }
 
-    private boolean handleUpdate(Ticket ticket) {
+
+
+    private boolean handleReplaceToken(Long userId ,Long ticketId) {
         try {
-            ticketservice.updateTicket(ticket);
+            ticketservice.replaceTicketWithToken(userId,ticketId);
             return true;
         } catch (Exception e) {
-            e.printStackTrace(); // Log the exception for debugging
+            e.printStackTrace();
             return false;
         }
     }
-
-    private boolean handleDelete(Long ticketId) {
+    private boolean handleDeletToken(Long userId ,Long ticketId) {
         try {
-            ticketservice.deleteTicket(ticketId);
+            ticketservice.deleteTicketWithToken(userId,ticketId);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -203,10 +220,14 @@ private String tagsToJson(Set<Tag> tags) {
         }
     }
 
+
+
     private Ticket requestToTicket(HttpServletRequest request) {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         String deadlineParam = request.getParameter("deadline");
+        int id_user = Integer.parseInt(request.getParameter("id_user"));
+        User user = userService.getUserById(id_user);
 
         // Validate inputs
         if (title == null || description == null || deadlineParam == null) {
@@ -215,7 +236,11 @@ private String tagsToJson(Set<Tag> tags) {
 
         LocalDate deadline = LocalDate.parse(deadlineParam);
         TaskValidator.validateTaskDate(deadline);
+        Ticket ticket = new Ticket(title, description, deadline, TicketStatus.IN_PROGRESS);
+        ticket.setUser(user);
+        ticket.setCanDeleteTicket(true);
+        ticket.setCanReplaceTicket(true);
 
-        return new Ticket(title, description, deadline, TicketStatus.RESOLVED);
+        return ticket ;
     }
 }

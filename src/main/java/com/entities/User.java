@@ -43,6 +43,8 @@ public class User {
     private Integer monthlyReplaceTokens;
 
 
+
+
     @Enumerated(EnumType.STRING)
     @Column(name = "role" , nullable = false)
     private UserRole role;

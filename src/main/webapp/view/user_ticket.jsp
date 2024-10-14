@@ -26,39 +26,42 @@
 <%@ include file="../component/header.jsp" %>
 <%@ include file="../component/add_tiket_ajax.jsp" %>
 
+<h1 class="text-2xl font-semibold text-center mt-8">BOSHABA</h1>
+<h1 class="text-2xl font-semibold text-center mt-8">LAHSANZE</h1>
 
 <div class="container mx-auto py-8">
-  <div class="grid grid-cols-4 gap-4">
-    <!-- IN PROGRESS Column -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">IN PROGRESS</h2>
-      <div id="inProgressColumn" class="space-y-4"></div>
-    </div>
+ <div class="grid grid-cols-4 gap-4">
+  <!-- IN PROGRESS Column -->
+  <div class="max-h-70 overflow-y-auto">
+    <h2 class="text-lg font-semibold mb-4">IN PROGRESS</h2>
+    <div id="inProgressColumn" class="space-y-4"></div>
+  </div>
 
-    <!-- RESOLVED Column -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">RESOLVED</h2>
-      <div id="resolvedColumn" class="space-y-4"></div>
-    </div>
+  <!-- RESOLVED Column -->
+  <div class="max-h-70 overflow-y-auto">
+    <h2 class="text-lg font-semibold mb-4">RESOLVED</h2>
+    <div id="resolvedColumn" class="space-y-4"></div>
+  </div>
 
-    <!-- REPLACED Column -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">REPLACED</h2>
-      <div id="replacedColumn" class="space-y-4"></div>
-    </div>
+  <!-- REPLACED Column -->
+  <div class="max-h-70 overflow-y-auto">
+    <h2 class="text-lg font-semibold mb-4">REPLACED</h2>
+    <div id="replacedColumn" class="space-y-4"></div>
+  </div>
 
-    <!-- CLOSED Column -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">CLOSED</h2>
-      <div id="closedColumn" class="space-y-4"></div>
-    </div>
+  <!-- CLOSED Column -->
+  <div class="max-h-70 overflow-y-auto">
+    <h2 class="text-lg font-semibold mb-4">CLOSED</h2>
+    <div id="closedColumn" class="space-y-4"></div>
+  </div>
+</div>
   </div>
 </div>
 
 <script>
   function loadTickets() {
     $.ajax({
-      url: '/DevSync/ticket',
+      url: '/DevSync/ticketJsoin',
       method: 'GET',
       dataType: 'json',
       success: function(data) {
@@ -113,9 +116,10 @@
             .map(tag => tag.value);
 
     $.ajax({
-      url: '/DevSync/ticket/add',
+      url: '/DevSync/ticketJsoin/add',
       method: 'POST',
       data: {
+        id_user: 61,
         title: title,
         description: description,
         deadline: deadline,
@@ -154,49 +158,51 @@
 
   function createTicketCard(ticket) {
     const cardDiv = document.createElement('div');
+    cardDiv.id = `ticket_${ticket.id}`;
     cardDiv.className = 'ticket-card bg-white p-4 shadow-lg rounded-lg';
+    console.log(ticket.canDeleteTicket);
 
-    cardDiv.innerHTML = `
-                <div class="mb-2">
-                    <p class="font-bold">${ticket.title}</p>
-                    <p class="text-sm text-gray-500">Due: ${ticket.deadline}</p>
-                </div>
-                <div class="details bg-gray-100 p-2 mt-2 rounded-md">
-                    <p><strong>Description:</strong> ${ticket.description}</p>
-                    <p><strong>User:</strong> ${ticket.user}</p>
-                    <div class="flex mt-2 space-x-2">
-                        ${ticket.status !== 'IN_PROGRESS' ? `
-                            <button onclick="updateTicket(${ticket.id})" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-3 rounded-lg">
-                                Update
-                            </button>
-                        ` : ''}
-                        ${ticket.status === 'IN_PROGRESS' ? `
-                            <button onclick="deleteTicket(${ticket.id})" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded-lg">
-                                Delete
-                            </button>
-                        ` : ''}
-                    </div>
-                    <div class="flex flex-wrap gap-1 mt-2">
-                        ${ticket.tags.map(tag => `
-                            <span class="bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
-                                ${tag.name}
-                            </span>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
+   cardDiv.innerHTML = `
+    <div class="mb-2" >
+        <p class="font-bold">${ticket.title}</p>
+        <p class="text-sm text-gray-500">Due: ${ticket.deadline}</p>
+    </div>
+    <div class="details bg-gray-100 p-2 mt-2 rounded-md">
+        <p><strong>Description:</strong> ${ticket.description}</p>
+        <p><strong>User:</strong> ${ticket.user}</p>
+        <div class="flex mt-2 space-x-2">
+        ${ticket.status === 'IN_PROGRESS' && ticket.canReplaceTicket  ? `
+        <button onclick="replaceToken(${ticket.id})" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-3 rounded-lg">
+            Update
+        </button>
+    ` : ''}
+    ${(ticket.status === 'IN_PROGRESS' && ticket.canDeleteTicket) ||ticket.status === 'REPLACED'   ? `
+        <button onclick="deleteToken(${ticket.id})" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded-lg">
+            Delete
+        </button>
+    ` : ''}
+        </div>
+        <div class="flex flex-wrap gap-1 mt-2">
+            ${ticket.tags.map(tag => `
+                <span class="bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+                    ${tag.name}
+                </span>
+            `).join('')}
+        </div>
+    </div>
+`;
 
     return cardDiv;
   }
 
-  function updateTicket(ticketId) {
+  function replaceToken(ticketId) {
     // Implement update functionality
     $.ajax({
-      url: `/DevSync/ticket/update/${ticketId}`,
+      url: `/DevSync/ticketJsoin/replace_token`,
       method: 'POST',
-      data: { id: ticketId },
+      data: { id_ticket: ticketId, id_user: 61},
       success: function() {
-        loadTickets();
+          loadTickets();
       },
       error: function(xhr, status, error) {
         console.error('Error updating ticket:', error);
@@ -204,33 +210,39 @@
     });
   }
 
-  function deleteTicket(ticketId) {
+  function deleteToken(ticketId) {
     if (confirm('Are you sure you want to delete this ticket?')) {
       $.ajax({
-        url: `/DevSync/ticket/delete`,
+        url: `/DevSync/ticketJsoin/delete_token`,
         method: 'POST',
-        data: { id: ticketId },
+        data: {
+          id_ticket: ticketId,
+          id_user: 61
+        },
         success: function() {
-          loadTickets();
+          removeTicket(ticketId);
         },
         error: function(xhr, status, error) {
-          console.error('Error deleting ticket:', error);
+         alert('Error deleting ticket:', error);
         }
       });
     }
   }
+  function removeTicket(ticketId) {
+    const ticket = document.getElementById(`ticket_`+ticketId);
+    if (ticket) {
+      ticket.remove();
+    }
+  }
 
-  // Initial load
+
   $(document).ready(function() {
     loadTickets();
 
-    // Refresh tickets every 30 seconds
-    setInterval(loadTickets, 30000);
-  });
-</script>
 
-<!-- Modal JavaScript -->
-<script>
+    setInterval(loadTickets, 350000);
+  });
+
   const modal = document.getElementById("ticketModal");
   const openModalButton = document.getElementById("openModalButton");
   const closeModalButton = document.getElementById("closeModalButton");
@@ -249,5 +261,7 @@
     }
   });
 </script>
+
+
 </body>
 </html>

@@ -9,24 +9,20 @@ import java.util.List;
 
 public class UserService {
     private UserRepository userRepository;
-    private TicketRepository ticketDAO;
+    private TicketRepository ticketRepository;
 
     public UserService() {
         this.userRepository = new UserRepository();
+        this.ticketRepository = new TicketRepository();
     }
 
-
     public User getUserById(int userId) {
-        User user = userRepository.getUserById(userId);
-        return user;
+        return userRepository.getUserById(userId);
     }
 
     // Retrieve all users
     public List<User> getAllUsers() {
-        List<User> users = userRepository.getAllUsers();
-
-
-        return users;
+        return userRepository.getAllUsers();
     }
 
     // Add a new user
@@ -47,75 +43,11 @@ public class UserService {
 
 
 
-
-    public Ticket canReplace(Long userId, Long ticketId){
-        int userReplaceTokens = userRepository.getUserReplaceTokens(userId);
-        Ticket ticket = ticketDAO.getTicketById(ticketId);
-       if(  userReplaceTokens > 0 && ticket.getCanReplaceTicket()){
-           return ticket;
-       }
-         return null;
-
-    };
-    boolean CanDelete(Long userId){
-        int userDeleteTokens = userRepository.getUserDeleteTokens(userId);
-        return userDeleteTokens > 0;
-    };
-
-
-
-    boolean replaceTicketWithToken(Long userId, Long ticketId){
-        if(canReplace(userId,ticketId) != null){
-//
-            return true;
-
-        }
-            return false;
-    };
-
-
-    boolean deleteTicketWithToken(Long userId, Long ticketId){
-        if(CanDelete(userId)){
-            if( userRepository.useDeleteToken(userId)){
-
-                return true;
-
-            }
-        }
-            return false;
-    };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    void resetDailyReplaceTokens(){
+    public void resetDailyReplaceTokens() {
         userRepository.resetDailyReplaceTokens();
-    };
-    void resetMonthlyDeleteTokens(){
-        userRepository.resetMonthlyDeleteTokens();
-    };
+    }
 
+    public void resetMonthlyDeleteTokens() {
+        userRepository.resetMonthlyDeleteTokens();
+    }
 }

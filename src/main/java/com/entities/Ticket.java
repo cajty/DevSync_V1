@@ -35,10 +35,21 @@ public class Ticket {
     private LocalDate deadline;
 
     @Column(name = "can_replace_ticket", nullable = false)
-    private boolean canReplaceTicket;
+    private boolean canReplaceTicket = true;
 
     @Column(name = "replacement_ticket_request_date", nullable = false)
     private LocalDate replacementTicketRequestDate;
+
+    public boolean isCanDeleteTicket() {
+        return canDeleteTicket;
+    }
+
+    public void setCanDeleteTicket(boolean canDeleteTicket) {
+        this.canDeleteTicket = canDeleteTicket;
+    }
+
+    @Column(name = "can_delete_ticket", nullable = false)
+    private boolean canDeleteTicket = true;
 
     @Column(name = "status", nullable = false)
     private TicketStatus status;
@@ -110,7 +121,7 @@ public class Ticket {
     }
 
     public void setDeadline(LocalDate date_end) {
-        this.deadline = date_end; // Corrected from deadline to date_end
+        this.deadline = date_end;
     }
 
     public void setUser(User user) {
@@ -125,6 +136,11 @@ public class Ticket {
         this.canReplaceTicket = canReplaceTicket;
     }
 
+    public boolean getCanDeleteTicket() {
+        return canDeleteTicket;
+    }
+
+
     @Override
     public String toString() {
         return "Ticket{" +
@@ -132,6 +148,8 @@ public class Ticket {
                 ", title='" + title + '\n' +
                 ", description='" + description + '\n' +
                 ", status='" + status + '\n' +
+                "canReplaceTicket=" + canReplaceTicket +
+                "canDeleteTicket=" + canDeleteTicket +
                 ", user=" + user +
                 ", deadline=" + deadline +
                 ", tags=" + tags +

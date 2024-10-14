@@ -2,39 +2,30 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="DevSync:war" />
+      <artifact name="DevSync:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ac4ef59-2ba5-42c8-a036-57292801fcd8" name="Changes" comment="ADD ticket creation  and delete">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/service/SchedulerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/servlet/TicketServletAjax.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/component/add_ticket.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/component/add_tiket_ajax.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/component/header.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/testAjax.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+    <list default="true" id="8ac4ef59-2ba5-42c8-a036-57292801fcd8" name="Changes" comment="add take tike and tags">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/config/DbConnection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dao/TagDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/repository/TagRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dao/TicketDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/repository/TicketRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/Ticket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/update-schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/update-schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/TagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/TagService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/add_chipCul_to_user.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/repository/TicketRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/repository/TicketRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/SchedulerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/SchedulerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/service/TicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/TicketService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/servlet/TestDbConnectionServlet.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/servlet/TicketServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/servlet/TicketServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/profile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/show_ticket.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/show_ticket.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/servlet/TicketServletAjax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/servlet/TicketServletAjax.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/component/add_ticket.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/testAjax.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user_ticket.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/ticket.jsp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,37 +81,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JBoss/WildFly Server.JBoss/WildFly 34.0.0.Beta1.executor&quot;: &quot;Run&quot;,
-    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.DevSync [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.DevSync [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.DevSync [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.DevSync [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.DevSync [site].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;version-1.1.0&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/YouCode/IdeaProjects/DevSync/src/main/webapp&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JBoss/WildFly Server.JBoss/WildFly 34.0.0.Beta1.executor": "Run",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.DevSync [clean,install].executor": "Run",
+    "Maven.DevSync [clean].executor": "Run",
+    "Maven.DevSync [install].executor": "Run",
+    "Maven.DevSync [package].executor": "Run",
+    "Maven.DevSync [site].executor": "Run",
+    "Maven.DevSync [verify].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "version-1.1.0",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/YouCode/IdeaProjects/DevSync/src/main/webapp",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\YouCode\IdeaProjects\DevSync\src\main\webapp" />
@@ -246,7 +238,10 @@
       <workItem from="1728636182759" duration="4909000" />
       <workItem from="1728655672286" duration="8009000" />
       <workItem from="1728822603926" duration="8396000" />
-      <workItem from="1728831230768" duration="530000" />
+      <workItem from="1728831230768" duration="1095000" />
+      <workItem from="1728893552226" duration="6166000" />
+      <workItem from="1728900562434" duration="15132000" />
+      <workItem from="1728925335201" duration="4727000" />
     </task>
     <task id="LOCAL-00001" summary="CRUD OF uSER">
       <option name="closed" value="true" />
@@ -272,7 +267,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728512057995</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add take tike and tags">
+      <option name="closed" value="true" />
+      <created>1728854710611</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728854710611</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,6 +285,63 @@
     <MESSAGE value="CRUD OF uSER" />
     <MESSAGE value="UPDATA" />
     <MESSAGE value="ADD ticket creation  and delete" />
-    <option name="LAST_COMMIT_MESSAGE" value="ADD ticket creation  and delete" />
+    <MESSAGE value="add take tike and tags" />
+    <option name="LAST_COMMIT_MESSAGE" value="add take tike and tags" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/service/TicketService.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/service/TicketService.java</url>
+          <line>81</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/service/TicketService.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/service/TicketService.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/service/TicketService.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/service/TicketService.java</url>
+          <line>85</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/service/TicketService.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/service/TicketService.java</url>
+          <line>87</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/service/TicketService.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/service/TicketService.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
